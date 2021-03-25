@@ -180,6 +180,7 @@ samtools view $MIR_bam |
             }
          '''  | 
     gawk '''
+            ### filter out alignments that map only to part of a reference MIR (number of matches < length of reference MIR)
             BEGIN {
                 FS="\t"
                 OFS="\t"
@@ -195,7 +196,7 @@ samtools view $MIR_bam |
                     print $1, $3, $6
                 }
             }
-         ''' |  ### filter out alignments that map only to part of a reference MIR (number of matches < length of reference MIR)
+         ''' | 
     gawk '''
             ## concatenate field2 with semicomma if current field1 is equal to previous field1
             BEGIN {
