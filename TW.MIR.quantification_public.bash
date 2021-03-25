@@ -248,12 +248,7 @@ gzip -d -c $MIR_map |
 
 echo -e "Input fastq:\t$FQFN" > $MIR_stats
 echo -e "Output prefix:\t$OFN" >> $MIR_stats
-
-cmd='cat'
-gzip -t "$FQFN"  2> /dev/null && cmd='gzip -d -c'
-which bzip2 > /dev/null && bzip2 -t "$FQFN"  2> /dev/null && cmd='bzip2 -d -c'
-$cmd "$FQFN" | paste - - - - | wc -l | sed 's/ //g' | sed 's/^/Total reads:\t/' >> $MIR_stats
-
+samtools view $MIR_bam | cut -f 1 | uniq | wc -l | sed 's/ //g' | sed 's/^/Total reads:\t/' >> $MIR_stats
 gzip -d -c $MIR_map | grep ';' | wc -l | sed 's/ //g' | sed 's/^/Ambiguously aligned reads(not counted):\t/' >> $MIR_stats
 gzip -d -c $MIR_map | grep -v ';' | wc -l | sed 's/ //g' | sed 's/^/Uniquely aligned reads:\t/' >> $MIR_stats
 
