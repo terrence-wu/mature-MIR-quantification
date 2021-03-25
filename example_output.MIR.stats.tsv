@@ -1,5 +1,5 @@
 Input fastq:	example.fastq.gz
 Output prefix:	example_output
 Total reads:	8000
-Ambiguously aligned reads(not counted):	0
-Uniquely aligned reads:	1
+Ambiguously aligned reads(not counted):	2
+Uniquely aligned reads:	2144

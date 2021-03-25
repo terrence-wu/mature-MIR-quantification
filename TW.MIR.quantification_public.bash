@@ -30,8 +30,11 @@
 ###      bowtie2
 ###      gzip
 ###
-### Test run with example data:
+### Test run with example data (expected run time < 1 min in a standard Desktop computer):
 ###      ./TW.MIR.quantification_public.bash  example.fastq.gz  example_output  hsa.mature.uniq.fa
+###
+### Licensed under the GNU General Public License v3.0
+###
 ###
 
 # module load bowtie2
@@ -49,6 +52,21 @@ if [ "$1" == "-p" -o "$1" == "--threads" ]; then
     shift
     shift
 fi
+
+if [ -z "$(which bowtie2)" ]; then
+    >&2 echo -e "\n## ERROR: bowtie2 is required \n"  
+    exit 1
+fi 
+
+if [ -z "$(which samtools)" ]; then
+    >&2 echo -e "\n## ERROR: samtools is required \n"  
+    exit 1
+fi 
+
+if [ -z "$(which gzip)" ]; then
+    >&2 echo -e "\n## ERROR: gzip is required \n"  
+    exit 1
+fi 
 
 FQFN=$1
 

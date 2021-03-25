@@ -1,0 +1,36 @@
+###
+### Pipeline for alignment and quantification of single-end MIR-sequencing data to human mature MIR database 
+### Author: Terrence Wu
+### Department: Genomic Medicine
+### Organization: University of Texas, MD Anderson Cancer Center, Houston TX, USA
+### 
+### Date of first version:   August, 2018
+### Date of current release: March,  2021
+###
+### Usage: TW.MIR.quantification_public.bash [-p 4]  input.fastq.gz  output_prefix  reference_bowtie2_index
+###
+### Input:
+###      input.fastq.gz:            gzipped fastq from single-end MIR sequencing for alignment
+###      output_prefix:             prefix of output files
+###      reference_bowtie2_index:   reference MIR database from mirbase (fasta and bowtie2 indexes) 
+###
+### Options:
+###      -p 4:  Use 4 threads for bowtie2 aligning (default: 4)
+###
+### Output:
+###      {output_prefix}.MIR.bam            bam file from bowtie2
+###      {output_prefix}.MIR.mapping.gz     list of aligned reads and matching 
+###      {output_prefix}.MIR.counts.tsv     raw counts of reference MIRs
+###      {output_prefix}.MIR.stats.tsv      basic statistics
+###      
+### Requirements:
+###      samtools
+###      bowtie2
+###      gzip
+###
+### Test run with example data (expected run time < 1 min in a standard Desktop computer):
+###      ./TW.MIR.quantification_public.bash   example.fastq.gz  example_output  hsa.mature.uniq.fa
+###
+### Licensed under the GNU General Public License v3.0
+###
+###
